@@ -47,6 +47,23 @@ public class LunchLocations {
 		//if(debug) System.out.println("Sam " + line);
 		sam = line.split(" ");
 		create_map(edge_line, down_stream, up_stream, node_map, int_name_map, debug);
+		/*
+		int total_node = node_map.size();
+		for (int i = 0; i < total_node; i++) {
+			if(debug) System.out.print(int_name_map.get(i) +  " : ");
+			for(Integer v : down_stream.get(i)) {
+				if(debug) System.out.print(" " + int_name_map.get(v) + " ");
+			}
+			if(debug) System.out.println(""); 
+		}
+		for (int i = 0; i < total_node; i++) {
+			if(debug) System.out.print(int_name_map.get(i) +  " : ");
+			for(Integer v : up_stream.get(i)) {
+				if(debug) System.out.print(" " + int_name_map.get(v) + " ");
+			}
+			if(debug) System.out.println(""); 
+		}
+		*/
 	}
 	
 	public static void create_map(ArrayList<String> edges, ArrayList<LinkedList<Integer>> down, ArrayList<LinkedList<Integer>> up, HashMap<String, Integer> node_map, ArrayList<String> int_name_map, boolean debug) {
@@ -55,9 +72,10 @@ public class LunchLocations {
 			String[] line_split = ed.split(" ");
 			if(node_map.get(line_split[0]) == null) {
 				node_map.put(line_split[0], current_index);
-				LinkedList<Integer> list = new LinkedList<Integer>();
-				down.add(list);
-				up.add(list);
+				LinkedList<Integer> list1 = new LinkedList<Integer>();
+				LinkedList<Integer> list2 = new LinkedList<Integer>();
+				down.add(list1);
+				up.add(list2);
 				int_name_map.add(line_split[0]);
 				current_index++;
 			}
@@ -66,10 +84,11 @@ public class LunchLocations {
 			}
 			if(node_map.get(line_split[1]) == null) {
 				node_map.put(line_split[1], current_index);
-				LinkedList<Integer> list = new LinkedList<Integer>();
+				LinkedList<Integer> list1 = new LinkedList<Integer>();
+				LinkedList<Integer> list2 = new LinkedList<Integer>();
 				int_name_map.add(line_split[1]);
-				down.add(list);
-				up.add(list);
+				down.add(list1);
+				up.add(list2);
 				current_index++;
 			}
 			else {
@@ -90,15 +109,6 @@ public class LunchLocations {
 		if(debug) System.out.println("downstream size : " + up.size());
 		for (String vertex : node_map.keySet()) {
 			//if(debug) System.out.println(vertex + " :  " + node_map.get(vertex));
-		}
-		int total_node = node_map.size();
-		
-		for (int i = 0; i < total_node; i++) {
-			if(debug) System.out.print(int_name_map.get(i) +  " : ");
-			for(Integer v : down.get(i)) {
-				if(debug) System.out.print(" " + int_name_map.get(v) + " ");
-			}
-			if(debug) System.out.println(""); 
 		}
 	} 
 
