@@ -34,7 +34,10 @@ public class LunchLocations {
 		while(!line.contains(condition)) {
 			//edge_line.add(line);
 			//if(debug) System.out.println("Avoid" + " " + line);
+			line = line.trim();
+			if(line.length() == 0) break;
 			avoid = line.split(" ");
+			System.out.println(avoid[0]);
 			line = input.nextLine();
 		}
 		line = input.nextLine();
@@ -69,10 +72,13 @@ public class LunchLocations {
 		*/
 		boolean visited[] = new boolean[total_node];
 		boolean avoid_arr[] = new boolean[total_node];
-		for (String s : avoid) {
-			//if(debug) System.out.println(s + " " + node_map.get(s));
-			avoid_arr[name_int_map.get(s)] = true;
+		if(avoid != null) {
+			for (String s : avoid) {
+				//if(debug) System.out.println(s + " " + node_map.get(s));
+				avoid_arr[name_int_map.get(s)] = true;
+			}
 		}
+		
 		for(String v : peggy) {
 			//if(debug) System.out.println(v);
 			dfs(name_int_map.get(v), visited, avoid_arr, down_stream_graph);
