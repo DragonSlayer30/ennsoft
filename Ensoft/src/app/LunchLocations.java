@@ -76,6 +76,12 @@ public class LunchLocations {
 		}
 	}
 	
+	/**
+	 * @param v node to start dfs from
+	 * @param visited visited array
+	 * @param avoid_arr avoid nodes
+	 * @param adj_matrix 
+	 */
 	public static void dfs(int v, boolean[] visited, boolean[] avoid_arr, ArrayList<LinkedList<Integer>> adj_matrix) {
         visited[v] = true; 
         Iterator<Integer> iter = adj_matrix.get(v).listIterator();
@@ -87,6 +93,14 @@ public class LunchLocations {
        }
     }
 	
+	/**
+	 * @param edges list of edges
+	 * @param down down stream graph
+	 * @param up up stream graph
+	 * @param node_map node name to int map
+	 * @param int_name_map int to node name map
+	 * @param debug 
+	 */
 	public static void create_map(ArrayList<String> edges, ArrayList<LinkedList<Integer>> down, ArrayList<LinkedList<Integer>> up, HashMap<String, Integer> node_map, ArrayList<String> int_name_map, boolean debug) {
 		int current_index = 0;
 		for (String ed : edges) {
